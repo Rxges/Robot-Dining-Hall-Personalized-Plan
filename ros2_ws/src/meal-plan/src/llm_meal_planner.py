@@ -3,15 +3,23 @@ import requests
 import json
 import pyttsx3
 import re
+from pathlib import Path
+
+# Load environment variables from keys.env
+env_path = Path(__file__).resolve().parents[4] / 'keys.env'
+if env_path.exists():
+    with open(env_path) as f:
+        for line in f:
+            if line.strip() and not line.startswith('#'):
+                key, val = line.strip().split('=', 1)
+                os.environ[key.strip()] = val.strip().strip('\'"')
 
 # Configuration
-SUPABASE_URL = 'https://zvstwghosiivbvucjlzx.supabase.co'
-SUPABASE_KEY = 'sb_publishable_CLuDIL1qA0Cl6sO9c0679A_nsL5bXIG'
+SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
+SUPABASE_KEY = os.environ.get('SUPABASE_KEY', '')
 TABLE_NAME = 'dining_preferences'
 
-# Note: You can either set the OPENROUTER_API_KEY environment variable in your terminal
-# (e.g., $env:OPENROUTER_API_KEY="sk-or-v1-...") or simply replace 'YOUR_OPENROUTER_API_KEY_HERE' below.
-OPENROUTER_API_KEY = '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'
+OPENROUTER_API_KEY = os.environ.get('OPENROUTER_API_KEY', '')
 
 DINING_MENU_URL = "https://hf-foodpro.austin.utexas.edu/foodpro/shortmenu.aspx?sName=University+Housing+and+Dining&locationNum=03&locationName=Kins+Dining&naFlag=1"
 

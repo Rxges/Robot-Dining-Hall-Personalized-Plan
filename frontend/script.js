@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    const supabaseUrl = 'https://zvstwghosiivbvucjlzx.supabase.co';
-    const supabaseKey = 'sb_publishable_CLuDIL1qA0Cl6sO9c0679A_nsL5bXIG';
+    const supabaseUrl = window.ENV.SUPABASE_URL;
+    const supabaseKey = window.ENV.SUPABASE_KEY;
     const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
     let currentPage = 1;
