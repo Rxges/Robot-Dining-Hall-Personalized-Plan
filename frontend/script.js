@@ -208,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         try {
-            const { data, error } = await supabase
+            const { error } = await supabase
                 .from('dining_preferences')
                 .insert([
                     { form_data: formData }
